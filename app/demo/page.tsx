@@ -1,165 +1,197 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, DollarSign, Activity, CreditCard } from "lucide-react";
+import {
+    Bell,
+    TrendingUp,
+    CreditCard,
+    Wallet,
+    Activity,
+    ShieldCheck,
+    Zap,
+    Home,
+    Utensils,
+    Car,
+    ShoppingBag
+} from "lucide-react";
+import {
+    FINANCIAL_SUMMARY,
+    WEEKLY_SPENDING,
+    KEY_INSIGHTS,
+    ARIA_ALERTS
+} from "@/constants/FinancialData";
 
 export default function DemoPage() {
-    const [investmentAmount, setInvestmentAmount] = useState(1000);
-    const [years, setYears] = useState(10);
-
-    // Simple compound interest calculation for demo
-    const rate = 0.08; // 8% return
-    const projectedValue = Math.round(investmentAmount * Math.pow(1 + rate, years));
-    const profit = projectedValue - investmentAmount;
-
     return (
-        <div className="max-w-7xl mx-auto space-y-8">
-            <header className="mb-8">
-                <h1 className="text-3xl font-bold mb-2">Good afternoon, Carlos</h1>
-                <p className="text-gray-400">Here's what's happening with your money today.</p>
+        <div className="max-w-3xl mx-auto space-y-6 pb-20">
+            {/* HEADER */}
+            <header className="flex items-center justify-between mb-8">
+                <div>
+                    <h2 className="text-gray-400 text-sm font-medium">Good Evening,</h2>
+                    <h1 className="text-2xl font-bold text-white">Carlos</h1>
+                </div>
+                <button className="p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors relative">
+                    <Bell className="w-5 h-5 text-white" />
+                    <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-[#24313C]"></span>
+                </button>
             </header>
 
-            {/* Quick Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <StatCard
-                    title="Net Worth"
-                    value="$142,593.00"
-                    change="+2.4%"
-                    isPositive
-                    icon={DollarSign}
-                />
-                <StatCard
-                    title="Monthly Spending"
-                    value="$3,240.50"
-                    change="-12%"
-                    isPositive
-                    icon={CreditCard}
-                />
-                <StatCard
-                    title="Investment Return"
-                    value="+18.2%"
-                    change="+4.1%"
-                    isPositive
-                    icon={Activity}
-                />
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Main Chart Area */}
-                <div className="lg:col-span-2 p-6 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm">
-                    <div className="flex items-center justify-between mb-6">
-                        <h2 className="text-xl font-semibold">Portfolio Performance</h2>
-                        <div className="flex gap-2">
-                            {['1D', '1W', '1M', '1Y', 'ALL'].map((period) => (
-                                <button
-                                    key={period}
-                                    className={`px-3 py-1 rounded-full text-xs font-medium ${period === '1Y' ? 'bg-white/10 text-white' : 'text-gray-500 hover:text-white'
-                                        }`}
-                                >
-                                    {period}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Mock Chart */}
-                    <div className="h-64 w-full flex items-end gap-2">
-                        {[40, 45, 30, 50, 55, 45, 60, 65, 50, 70, 75, 80].map((h, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ height: 0 }}
-                                animate={{ height: `${h}%` }}
-                                transition={{ delay: i * 0.05, duration: 0.5 }}
-                                className="flex-1 bg-gradient-to-t from-sky-blue/20 to-sky-blue/60 rounded-t-sm hover:from-sky-blue/40 hover:to-sky-blue/80 transition-colors cursor-pointer group relative"
-                            >
-                                <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-white text-black text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                                    ${(h * 1000).toLocaleString()}
-                                </div>
-                            </motion.div>
-                        ))}
+            {/* DYNAMIC HEALTH SCORE */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
+                <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-lg font-bold text-white">Dynamic Health Score</h3>
+                    <div className="flex gap-2">
+                        <span className="px-3 py-1 rounded-xl bg-emerald-500/20 text-emerald-400 text-xs font-semibold">
+                            ↗ +4 this week
+                        </span>
+                        <span className="px-3 py-1 rounded-xl bg-blue-500/20 text-blue-400 text-xs font-semibold">
+                            200+ signals
+                        </span>
                     </div>
                 </div>
 
-                {/* Growth Simulator (FanDuel Style) */}
-                <div className="p-6 rounded-3xl bg-gradient-to-br from-sky-blue/10 to-accent-blue/5 border border-sky-blue/20 backdrop-blur-sm">
-                    <div className="flex items-center gap-3 mb-6">
-                        <div className="w-10 h-10 rounded-full bg-sky-blue/20 flex items-center justify-center">
-                            <ArrowUpRight className="w-5 h-5 text-sky-blue" />
-                        </div>
-                        <div>
-                            <h2 className="text-xl font-semibold">Growth Simulator</h2>
-                            <p className="text-xs text-gray-400">Projected S&P 500 Returns</p>
-                        </div>
+                <div className="flex items-center gap-6">
+                    <div className="relative w-24 h-24 flex items-center justify-center">
+                        {/* Ring Chart Placeholder */}
+                        <div className="absolute inset-0 rounded-full border-8 border-blue-500/20"></div>
+                        <div className="absolute inset-0 rounded-full border-8 border-blue-500 border-t-transparent border-l-transparent rotate-45"></div>
+                        <span className="text-3xl font-bold text-white">72</span>
                     </div>
 
-                    <div className="space-y-6">
-                        <div>
-                            <div className="flex justify-between text-sm mb-2">
-                                <span className="text-gray-400">Initial Investment</span>
-                                <span className="font-bold text-white">${investmentAmount.toLocaleString()}</span>
-                            </div>
-                            <input
-                                type="range"
-                                min="100"
-                                max="10000"
-                                step="100"
-                                value={investmentAmount}
-                                onChange={(e) => setInvestmentAmount(Number(e.target.value))}
-                                className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-sky-blue"
-                            />
+                    <div className="flex-1">
+                        <p className="text-gray-400 text-xs mb-3">
+                            AI analyzing: Income volatility, spending patterns, emotional sentiment
+                        </p>
+                        <div className="bg-blue-500/10 border-l-2 border-blue-500 p-3 rounded-r-lg">
+                            <p className="text-blue-400 text-xs font-bold mb-1">AI Insight:</p>
+                            <p className="text-white text-xs leading-relaxed">
+                                Your dual income reduces volatility by 34%. Score improving faster than 89% of users.
+                            </p>
                         </div>
-
-                        <div>
-                            <div className="flex justify-between text-sm mb-2">
-                                <span className="text-gray-400">Time Horizon</span>
-                                <span className="font-bold text-white">{years} Years</span>
-                            </div>
-                            <input
-                                type="range"
-                                min="1"
-                                max="40"
-                                step="1"
-                                value={years}
-                                onChange={(e) => setYears(Number(e.target.value))}
-                                className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-sky-blue"
-                            />
-                        </div>
-
-                        <div className="pt-6 border-t border-white/10">
-                            <div className="flex justify-between items-end mb-2">
-                                <span className="text-gray-400">Projected Value</span>
-                                <span className="text-3xl font-bold text-sky-blue">${projectedValue.toLocaleString()}</span>
-                            </div>
-                            <div className="flex justify-between text-sm">
-                                <span className="text-gray-400">Total Profit</span>
-                                <span className="text-green-400">+${profit.toLocaleString()}</span>
-                            </div>
-                        </div>
-
-                        <button className="w-full py-3 rounded-xl bg-sky-blue text-black font-bold hover:bg-white transition-colors">
-                            Start Investing Now
-                        </button>
                     </div>
                 </div>
             </div>
-        </div>
-    );
-}
 
-function StatCard({ title, value, change, isPositive, icon: Icon }: any) {
-    return (
-        <div className="p-6 rounded-3xl bg-white/5 border border-white/10 hover:border-white/20 transition-colors group">
-            <div className="flex justify-between items-start mb-4">
-                <div className="p-3 rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
-                    <Icon className="w-6 h-6 text-gray-300" />
-                </div>
-                <span className={`px-2 py-1 rounded-lg text-xs font-medium ${isPositive ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
-                    {change}
-                </span>
+            {/* TOTAL BALANCE */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
+                <h3 className="text-gray-400 text-xs font-bold tracking-wider uppercase mb-2">TOTAL BALANCE</h3>
+                <p className="text-4xl font-bold text-emerald-400 mb-1">
+                    ${FINANCIAL_SUMMARY.totalBalance.toLocaleString()}
+                </p>
+                <p className="text-gray-400 text-sm">+$1,240 this month</p>
             </div>
-            <h3 className="text-gray-400 text-sm font-medium mb-1">{title}</h3>
-            <p className="text-2xl font-bold text-white">{value}</p>
+
+            {/* INCOME & DEBT OVERVIEW */}
+            <div className="grid grid-cols-2 gap-4">
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
+                    <h3 className="text-gray-400 text-xs mb-2">Monthly Income</h3>
+                    <p className="text-xl font-bold text-emerald-400 mb-1">
+                        ${FINANCIAL_SUMMARY.monthlyIncome.toLocaleString()}
+                    </p>
+                    <p className="text-gray-500 text-[10px]">Biweekly deposits</p>
+                </div>
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
+                    <h3 className="text-gray-400 text-xs mb-2">Total Debt</h3>
+                    <p className="text-xl font-bold text-red-400 mb-1">
+                        ${FINANCIAL_SUMMARY.totalDebt.toLocaleString()}
+                    </p>
+                    <p className="text-gray-500 text-[10px]">Auto + Student + Medical</p>
+                </div>
+            </div>
+
+            {/* CREDIT SCORE */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex items-center justify-between">
+                <div>
+                    <h3 className="text-gray-400 text-xs font-bold mb-1">Credit Score</h3>
+                    <p className="text-2xl font-bold text-white mb-1">{FINANCIAL_SUMMARY.creditScore}</p>
+                    <p className="text-emerald-400 text-xs">+{FINANCIAL_SUMMARY.creditScoreChange} points this month</p>
+                </div>
+                <div className="text-right">
+                    <p className="text-white text-sm font-semibold mb-2">Good Credit</p>
+                    <div className="w-32 h-2 bg-white/10 rounded-full overflow-hidden">
+                        <div className="h-full bg-emerald-500 w-[70%] rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+
+            {/* WEEKLY SPENDING */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
+                <h3 className="text-white text-lg font-bold mb-6">Weekly Financial Summary</h3>
+
+                <div className="flex items-center justify-center mb-8">
+                    <div className="relative w-48 h-48 flex items-center justify-center rounded-full border-[16px] border-white/5">
+                        {/* Simple visual representation of chart */}
+                        <div className="absolute inset-0 rounded-full border-[16px] border-red-500 border-r-transparent border-b-transparent rotate-45 opacity-80"></div>
+                        <div className="absolute inset-0 rounded-full border-[16px] border-amber-500 border-l-transparent border-b-transparent -rotate-12 opacity-80"></div>
+                        <div className="text-center">
+                            <p className="text-2xl font-bold text-white">${WEEKLY_SPENDING.total.toLocaleString()}</p>
+                            <p className="text-gray-400 text-xs">Total Spent</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                    {WEEKLY_SPENDING.categories.map((cat, index) => (
+                        <div key={index} className="flex items-center gap-3">
+                            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: cat.color }}></div>
+                            <p className="text-gray-300 text-sm">
+                                <span className="font-semibold">{cat.name}:</span> ${cat.amount.toLocaleString()}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* DATA EARNINGS */}
+            <div className="bg-gradient-to-br from-purple-900/20 to-blue-900/20 border border-purple-500/30 rounded-2xl p-6">
+                <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-white font-bold">Your Data Earnings</h3>
+                    <div className="w-10 h-6 bg-emerald-500 rounded-full p-1 cursor-pointer">
+                        <div className="w-4 h-4 bg-white rounded-full ml-auto"></div>
+                    </div>
+                </div>
+                <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                        <span className="text-gray-400 text-sm">This week:</span>
+                        <span className="text-emerald-400 font-bold">+${FINANCIAL_SUMMARY.dataEarnings.thisWeek.toFixed(2)}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                        <span className="text-gray-400 text-sm">Total earned:</span>
+                        <span className="text-white font-bold">${FINANCIAL_SUMMARY.dataEarnings.thisMonth.toFixed(2)}</span>
+                    </div>
+                </div>
+            </div>
+
+            {/* KEY INSIGHTS */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
+                <h3 className="text-white font-bold mb-4">Key Insights</h3>
+                <div className="space-y-4">
+                    {KEY_INSIGHTS.map((insight) => (
+                        <div key={insight.id} className="pl-4 border-l-2" style={{ borderColor: insight.color }}>
+                            <h4 className="text-white text-sm font-semibold">{insight.title}</h4>
+                            <p className="text-gray-400 text-xs">{insight.description}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* ARIA ALERTS */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
+                <div className="flex items-center gap-3 mb-4">
+                    <div className="w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center">
+                        <span className="text-purple-400 font-bold">A</span>
+                    </div>
+                    <h3 className="text-white font-bold">ARIA Alerts</h3>
+                </div>
+                <div className="space-y-3">
+                    {ARIA_ALERTS.map((alert) => (
+                        <div key={alert.id} className="p-3 rounded-xl" style={{ backgroundColor: `${alert.color}20` }}>
+                            <h4 className="text-sm font-bold mb-1" style={{ color: alert.color }}>{alert.title}</h4>
+                            <p className="text-white/80 text-xs">{alert.message}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 }

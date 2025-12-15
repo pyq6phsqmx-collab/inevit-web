@@ -11,8 +11,10 @@ import {
     Settings,
     LogOut,
     Menu,
-    X
+    X,
+    Brain
 } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export default function DemoLayout({
     children,
@@ -20,9 +22,10 @@ export default function DemoLayout({
     children: React.ReactNode;
 }) {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const pathname = usePathname();
 
     return (
-        <div className="flex h-screen bg-black text-white overflow-hidden">
+        <div className="flex h-screen bg-[#24313C] text-white overflow-hidden">
             {/* Sidebar */}
             <motion.aside
                 initial={{ width: 240 }}
@@ -44,11 +47,11 @@ export default function DemoLayout({
                 </div>
 
                 <nav className="flex-1 px-4 py-6 space-y-2">
-                    <NavItem icon={LayoutDashboard} label="Dashboard" isOpen={isSidebarOpen} active />
-                    <NavItem icon={Wallet} label="Accounts" isOpen={isSidebarOpen} />
-                    <NavItem icon={PieChart} label="Budget" isOpen={isSidebarOpen} />
-                    <NavItem icon={TrendingUp} label="Investments" isOpen={isSidebarOpen} />
-                    <NavItem icon={Settings} label="Settings" isOpen={isSidebarOpen} />
+                    <NavItem icon={LayoutDashboard} label="Home" href="/demo" isOpen={isSidebarOpen} active={pathname === "/demo"} />
+                    <NavItem icon={Wallet} label="Accounts" href="/demo/accounts" isOpen={isSidebarOpen} active={pathname === "/demo/accounts"} />
+                    <NavItem icon={PieChart} label="Insights" href="/demo/insights" isOpen={isSidebarOpen} active={pathname === "/demo/insights"} />
+                    <NavItem icon={TrendingUp} label="Plans" href="/demo/plans" isOpen={isSidebarOpen} active={pathname === "/demo/plans"} />
+                    <NavItem icon={Brain} label="ARIA" href="/demo/aria" isOpen={isSidebarOpen} active={pathname === "/demo/aria"} />
                 </nav>
 
                 <div className="p-4 border-t border-white/10">
@@ -60,7 +63,7 @@ export default function DemoLayout({
             </motion.aside>
 
             {/* Main Content */}
-            <main className="flex-1 flex flex-col overflow-hidden relative">
+            <main className="flex-1 flex flex-col overflow-hidden relative bg-[#24313C]">
                 {/* Mobile Header */}
                 <header className="md:hidden flex items-center justify-between p-4 border-b border-white/10 bg-black/50 backdrop-blur-md">
                     <span className="text-lg font-bold">INEVIT OS</span>
@@ -75,12 +78,13 @@ export default function DemoLayout({
     );
 }
 
-function NavItem({ icon: Icon, label, isOpen, active = false }: { icon: any, label: string, isOpen: boolean, active?: boolean }) {
+function NavItem({ icon: Icon, label, href, isOpen, active = false }: { icon: any, label: string, href: string, isOpen: boolean, active?: boolean }) {
     return (
-        <button
+        <Link
+            href={href}
             className={`w-full flex items-center gap-3 p-3 rounded-lg transition-all ${active
-                    ? "bg-sky-blue/20 text-sky-blue"
-                    : "text-gray-400 hover:bg-white/5 hover:text-white"
+                ? "bg-sky-blue/20 text-sky-blue"
+                : "text-gray-400 hover:bg-white/5 hover:text-white"
                 }`}
         >
             <Icon className="w-5 h-5 min-w-[20px]" />
@@ -93,6 +97,6 @@ function NavItem({ icon: Icon, label, isOpen, active = false }: { icon: any, lab
                     {label}
                 </motion.span>
             )}
-        </button>
+        </Link>
     );
 }
