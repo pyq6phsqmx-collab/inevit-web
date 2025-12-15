@@ -53,10 +53,13 @@ export default function Comparison() {
                     className="text-center mb-16"
                 >
                     <h2 className="text-3xl md:text-5xl font-bold mb-6">
-                        Why choose <span className="text-gradient-blue">INEVIT</span>?
+                        Why This Works
                     </h2>
-                    <p className="text-xl text-gray-400">
-                        See how we stack up against the competition.
+                    <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
+                        InEvit does not compete with banks, fintech apps, or brokerages — it connects to them. Any new financial app or account can plug into InEvit's ecosystem.
+                    </p>
+                    <p className="text-lg text-gray-500 max-w-3xl mx-auto">
+                        Unlike other platforms like CoPilot, Monarch, and Origin which are limited budgeting apps that add complexity and charge high subscriptions, InEvit simplifies everything into one operating system.
                     </p>
                 </motion.div>
 

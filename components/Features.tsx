@@ -5,8 +5,8 @@ import { Brain, PieChart, Shield, Zap, Globe, Smartphone } from "lucide-react";
 
 const features = [
     {
-        title: "AI Financial Advisor",
-        description: "Your personal 'ChatGPT of Finance'. Ask anything, get instant, data-driven advice tailored to your portfolio.",
+        title: "ARIA: The ChatGPT of Finance",
+        description: "Our super-intelligent, customizable AI financial advisor. Ask ARIA anything, get instant, data-driven advice tailored to your portfolio. It learns your goals, habits, and risk tolerance.",
         icon: Brain,
         colSpan: "md:col-span-2",
         bg: "bg-gradient-to-br from-sky-blue/20 to-accent-blue/5",
